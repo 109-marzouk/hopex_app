@@ -1,0 +1,26 @@
+{
+  "deposit": "إيداع",
+  "trades": "تجارة",
+  "finances": "التمويلات",
+  "profile": "الحساب",
+  "analytics": "إحصائيات",
+  "help": "مساعده",
+  "settings": "الإعدادات",
+  "logout": "تسجيل خروج",
+  "email": "البريد الألكتروني",
+  "confirm_email": "تأكيد البريد الألكتروني",
+  "password": "كلمة السر",
+  "confirm_password": "تأكيد كلمة السر",
+  "forget_password": "هل نسيت كلمة السر؟",
+  "sign_in": "تسجيل دخول",
+  "or_sign_in_using": "أو سجل دخول بأستخدام",
+  "or_sign_up_using": "أو إشترك بأستخدام",
+  "Don't_have_an_account": "لا تمتلك حساب؟",
+  "already_have_an_account": "لديك حساب بالفعل؟",
+  "sign_up": "إشترك",
+  "first_name": "الأسم الأول",
+  "last_name": "الأسم الأخير",
+  "next": "التالي",
+  "pervious": "السابق"
+}
+
