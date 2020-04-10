@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/app_localizations.dart';
+import 'package:hopex_progx/screens/SignIn.dart';
+import 'package:page_transition/page_transition.dart';
 //import 'package:loginui/Screens/Authenticate/register.dart';
 //import 'package:loginui/Screens/Home/Home.dart';
 //import 'package:loginui/services/auth.dart';
+
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
@@ -25,6 +28,8 @@ class CustomScrollBehavior extends ScrollBehavior {
     return child;
   }
 }
+
+
 class _SignUpState extends State<SignUp> {
   //final AuthService _auth = AuthService();
   //final _formKey = GlobalKey<FormState>();
@@ -322,53 +327,49 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                Flexible(
+                                MaterialButton(
+                                  elevation: 0,
+                                  hoverElevation: 0,
+                                  highlightElevation: 0,
+                                  focusElevation: 0,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(stepIcon()[0], size: 40,
+                                      color: currIndex > 0 ? Colors.green : Colors.black54,),
+                                      Text(AppLocalizations.of(context).translate("pervious"), style: TextStyle(fontSize: 18, color: currIndex > 0 ? Colors.green : Colors.black54,),),
+                                    ],
+                                  ),
+                                  color: Colors.white,
+                                  disabledColor: Colors.white,
+                                  onPressed: currIndex > 0 ? () {
+                                    setState(() => currIndex = _validPosition(--currIndex));
+                                    print(currIndex);
+                                    formSlider.previousPage(
+                                      duration: Duration(milliseconds: 300), curve: Curves.linear);
+                                  } : null,
+                                ),
+                                Directionality(
+                                  textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
                                   child: MaterialButton(
                                     elevation: 0,
                                     hoverElevation: 0,
                                     highlightElevation: 0,
                                     focusElevation: 0,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Icon(stepIcon()[0], size: 40,
-                                        color: currIndex > 0 ? Colors.green : Colors.black54,),
-                                        Text(AppLocalizations.of(context).translate("pervious"), style: TextStyle(fontSize: 18, color: currIndex > 0 ? Colors.green : Colors.black54,),),
-                                      ],
-                                    ),
                                     color: Colors.white,
                                     disabledColor: Colors.white,
-                                    onPressed: currIndex > 0 ? () {
-                                      setState(() => currIndex = _validPosition(--currIndex));
-                                      print(currIndex);
-                                      formSlider.previousPage(
-                                        duration: Duration(milliseconds: 300), curve: Curves.linear);
-                                    } : null,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Directionality(
-                                    textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
-                                    child: MaterialButton(
-                                      elevation: 0,
-                                      hoverElevation: 0,
-                                      highlightElevation: 0,
-                                      focusElevation: 0,
-                                      color: Colors.white,
-                                      disabledColor: Colors.white,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(stepIcon()[1], size: 40,
-                                            color: currIndex <= 1 ? Colors.green : Colors.black54,),
-                                          Text(AppLocalizations.of(context).translate("next"), style: TextStyle(fontSize: 18, color: currIndex <= 1 ? Colors.green : Colors.black54,),),
-                                        ],
-                                      ),
-                                        onPressed: currIndex <= 1 ? () {
-                                          setState(() => currIndex = _validPosition(++currIndex));
-                                          print(currIndex);
-                                          formSlider.nextPage(
-                                              duration: Duration(milliseconds: 300), curve: Curves.linear);
-                                        } : null,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(stepIcon()[1], size: 40,
+                                          color: currIndex <= 1 ? Colors.green : Colors.black54,),
+                                        Text(AppLocalizations.of(context).translate("next"), style: TextStyle(fontSize: 18, color: currIndex <= 1 ? Colors.green : Colors.black54,),),
+                                      ],
                                     ),
+                                      onPressed: currIndex <= 1 ? () {
+                                        setState(() => currIndex = _validPosition(++currIndex));
+                                        print(currIndex);
+                                        formSlider.nextPage(
+                                            duration: Duration(milliseconds: 300), curve: Curves.linear);
+                                      } : null,
                                   ),
                                 ),
                               ]),
@@ -479,11 +480,9 @@ class _SignUpState extends State<SignUp> {
                                           color: Colors.green,
                                           fontSize: 15,
                                         ),
-                                        /*recognizer: TapGestureRecognizer()..onTap = () =>
-                                          Navigator.push(context,
-                                              MaterialPageRoute(builder: (context) => RegisterOwn())),*/
+                                        recognizer: TapGestureRecognizer()..onTap = () =>
+                                            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: SignIn(), duration: Duration(seconds: 0))),
                                       ),
-
                                     ]
                                 ),
                               ),

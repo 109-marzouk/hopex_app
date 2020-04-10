@@ -1,5 +1,5 @@
-import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 
 class OnBoarding extends StatefulWidget {
   @override
@@ -9,124 +9,54 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
 
   //Create a list of PageModel to be set on the onBoarding Screens.
-  final pageList = [
-    PageModel(
-        color: const Color(0xFF678FB4),
-        heroAssetPath: 'assets/png/hotels.png',
-        title: Text('Hotels',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              fontSize: 34.0,
-            )),
-        body: Text('All hotels and hostels are sorted by hospitality rating',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            )),
-        iconAssetPath: 'assets/png/key.png'),
-    PageModel(
-        color: const Color(0xFF65B0B4),
-        heroAssetPath: 'assets/png/banks.png',
-        title: Text('Banks',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              fontSize: 34.0,
-            )),
-        body: Text(
-            'We carefully verify all banks before adding them into the app',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            )),
-        iconAssetPath: 'assets/png/wallet.png'),
-    PageModel(
-      color: const Color(0xFF9B90BC),
-      heroAssetPath: 'assets/png/stores.png',
-      title: Text('Store',
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-            fontSize: 34.0,
-          )),
-      body: Text('All local stores are categorized for your convenience',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.0,
-          )),
-      iconAssetPath: 'assets/png/shopping_cart.png',
-    ),
-    // SVG Pages Example
-    PageModel(
-        color: const Color(0xFF678FB4),
-        heroAssetPath: 'assets/svg/hotel.svg',
-        title: Text('Hotels SVG',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              fontSize: 34.0,
-            )),
-        body: Text('All hotels and hostels are sorted by hospitality rating',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            )),
-        iconAssetPath: 'assets/svg/key.svg',
-        heroAssetColor: Colors.white),
-    PageModel(
-        color: const Color(0xFF65B0B4),
-        heroAssetPath: 'assets/svg/bank.svg',
-        title: Text('Banks SVG',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              fontSize: 34.0,
-            )),
-        body: Text(
-            'We carefully verify all banks before adding them into the app',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-            )),
-        iconAssetPath: 'assets/svg/cards.svg',
-        heroAssetColor: Colors.white),
-    PageModel(
-      color: const Color(0xFF9B90BC),
-      heroAssetPath: 'assets/svg/store.svg',
-      title: Text('Store SVG',
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-            fontSize: 34.0,
-          )),
-      body: Text('All local stores are categorized for your convenience',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.0,
-          )),
-      iconAssetPath: 'assets/svg/cart.svg',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    List<PageViewModel> listPagesViewModel = [
+      PageViewModel(
+        title: "Title of first page",
+        body: "Here you can write the description of the page, to explain someting...",
+        image: Center(child: Image.asset("assets/images/slider_1.png", height: 175.0)),
+      ),
+      PageViewModel(
+        title: "Title of first page",
+        body: "Here you can write the description of the page, to explain someting...",
+        image: Center(child: Image.asset("assets/images/slider_2.png", height: 175.0)),
+      ),
+      PageViewModel(
+        title: "Title of first page",
+        body: "Here you can write the description of the page, to explain someting...",
+        image: Center(child: Image.asset("assets/images/slider_3.png", height: 175.0)),
+      )
+    ];
     return Scaffold(
       //Pass pageList and the mainPage route.
-      body: FancyOnBoarding(
-        doneButtonText: "Done",
-        skipButtonText: "Skip",
-        pageList: pageList,
-        onDoneButtonPressed: () =>
-            Navigator.of(context).pushReplacementNamed('/mainPage'),
-        onSkipButtonPressed: () =>
-            Navigator.of(context).pushReplacementNamed('/mainPage'),
+      body: IntroductionScreen(
+        pages: listPagesViewModel,
+        onDone: () {
+          Navigator.pushNamed(context, "/SignUp");
+        },
+        onSkip: () {
+          Navigator.pushNamed(context, "/SignUp");
+        },
+        showSkipButton: true,
+        skip: Row(
+          children: <Widget>[
+            Text("Skip", style: TextStyle(fontWeight: FontWeight.w600)),
+          ],
+        ),
+        next: const Icon(Icons.navigate_next),
+        done: const Text("Sign up", style: TextStyle(fontWeight: FontWeight.w600)),
+        dotsDecorator: DotsDecorator(
+            size: const Size.square(10.0),
+            activeSize: const Size(20.0, 10.0),
+            activeColor: Colors.green,
+            color: Colors.black26,
+            spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)
+            )
+        ),
       ),
     );
   }

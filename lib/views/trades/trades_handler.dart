@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hopex_progx/app_localizations.dart';
-import 'package:hopex_progx/responsive/orientation_layout.dart';
 import 'package:hopex_progx/responsive/screen_type_layout.dart';
 import 'package:hopex_progx/views/trades/trades_mobile.dart';
 import 'package:hopex_progx/views/trades/trades_tablet.dart';

@@ -14,8 +14,8 @@ class PageHandlerMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextDirection currentDirection = Directionality.of(context);
-    final bool isRTL = (currentDirection == TextDirection.rtl);
+    /*final TextDirection currentDirection = Directionality.of(context);
+    final bool isRTL = (currentDirection == TextDirection.rtl);*/
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -25,12 +25,11 @@ class PageHandlerMobile extends StatelessWidget {
         leading: IconButton(
           icon: Icon(EvaIcons.menu, size: 30, color: Colors.green,),
           onPressed: () {
-            isRTL ? _scaffoldKey.currentState.openEndDrawer() : _scaffoldKey.currentState.openDrawer();
+            _scaffoldKey.currentState.openDrawer();
           },
         ),
       ),
       key: _scaffoldKey,
-      endDrawer: AppDrawer(),
       drawer: AppDrawer(),
       body: Container(
         width: MediaQuery.of(context).size.width,

@@ -1,4 +1,3 @@
-import 'package:animated_splash/animated_splash.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,16 +6,15 @@ import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
 import 'package:hopex_progx/screens/onboarding.dart';
 import 'package:hopex_progx/screens/signup.dart';
-import 'package:hopex_progx/views/home_page.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
-import 'package:hopex_progx/widgets/app_drawer/app_drawer_mobile.dart';
-import 'package:hopex_progx/widgets/left_tabbar/vertical_tab.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 bool testSize = true;
 
-void main() => runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
+void main() {
+  runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
@@ -42,13 +40,15 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         //home: HomeView(),
-        initialRoute: '/Trades',
+        initialRoute: '/OnBoarding',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
-          '/Trades': (context) => SignUp(),
+          '/OnBoarding': (context) => OnBoarding(),
+          '/SignUp': (context) => SignUp(),
+          '/SignIn': (context) => SignIn(),
           // When navigating to the "/second" route, build the SecondScreen widget.
-          /*'/Trade': (context) => TradeView(),
-          '/Finances': (context) => FinancesView(),
+          '/Trades': (context) => Trades(),
+          /*'/Finances': (context) => FinancesView(),
           '/Profile': (context) => ProfileView(),
           '/Analytics': (context) => AnalyticsView(),
           '/Help': (context) => HelpView(),

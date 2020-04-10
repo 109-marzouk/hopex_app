@@ -4,9 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/app_localizations.dart';
+import 'package:hopex_progx/screens/signup.dart';
+import 'package:hopex_progx/views/trades/trades_handler.dart';
+import 'package:page_transition/page_transition.dart';
 //import 'package:loginui/Screens/Authenticate/register.dart';
 //import 'package:loginui/Screens/Home/Home.dart';
 //import 'package:loginui/services/auth.dart';
+
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -147,6 +151,7 @@ class _SignInState extends State<SignIn> {
                             highlightElevation: 0,
                             focusElevation: 0,
                             onPressed: () async {
+                              Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
                               /*if(_formKey.currentState.validate()){
                                 dynamic result = await _auth.loginWithEmailAndPassword(email, password);
                                 if(result == null){
@@ -246,11 +251,9 @@ class _SignInState extends State<SignIn> {
                                         color: Colors.green,
                                         fontSize: 15,
                                       ),
-                                      /*recognizer: TapGestureRecognizer()..onTap = () =>
-                                          Navigator.push(context,
-                                              MaterialPageRoute(builder: (context) => RegisterOwn())),*/
+                                      recognizer: TapGestureRecognizer()..onTap = () =>
+                                          Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: SignUp())),
                                     ),
-
                                   ]
                                 ),
                               ),
