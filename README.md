@@ -1,4 +1,4 @@
-# hopex_progx
+# hopex_app
 
 A new Flutter project.
 
