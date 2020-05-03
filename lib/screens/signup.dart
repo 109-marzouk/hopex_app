@@ -286,220 +286,219 @@ class _SignUpState extends State<SignUp> {
             child: formInputs[itemIndex],
           ),
     );
-    return Container(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Container(
-          color: Colors.white,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Container(),
-              ),
-              Expanded(
-                flex: 8,
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                    Expanded(
-                      flex: 25,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          SizedBox(height: 20,),
-                          Image.asset("assets/images/logo.png", height: 80,),
-                          SizedBox(height: 10,),
-                          Column(
-                            children: <Widget>[
-                              Form(
-                                //key: _formKey,
-                                child: ScrollConfiguration(
-                                  behavior: CustomScrollBehavior(),
-                                  child: formSlider,
-                                ),
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      backgroundColor: Colors.transparent,
+      body: Container(
+        color: Colors.white,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(),
+            ),
+            Expanded(
+              flex: 8,
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                  Expanded(
+                    flex: 25,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(height: 20,),
+                        Image.asset("assets/images/logo.png", height: 80,),
+                        SizedBox(height: 10,),
+                        Column(
+                          children: <Widget>[
+                            Form(
+                              //key: _formKey,
+                              child: ScrollConfiguration(
+                                behavior: CustomScrollBehavior(),
+                                child: formSlider,
                               ),
-                              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                MaterialButton(
+                            ),
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                              MaterialButton(
+                                elevation: 0,
+                                hoverElevation: 0,
+                                highlightElevation: 0,
+                                focusElevation: 0,
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(stepIcon()[0], size: 40,
+                                    color: currIndex > 0 ? Colors.green : Colors.black54,),
+                                    Text(AppLocalizations.of(context).translate("pervious"), style: TextStyle(fontSize: 18, color: currIndex > 0 ? Colors.green : Colors.black54,),),
+                                  ],
+                                ),
+                                color: Colors.white,
+                                disabledColor: Colors.white,
+                                onPressed: currIndex > 0 ? () {
+                                  setState(() => currIndex = _validPosition(--currIndex));
+                                  print(currIndex);
+                                  formSlider.previousPage(
+                                    duration: Duration(milliseconds: 300), curve: Curves.linear);
+                                } : null,
+                              ),
+                              Directionality(
+                                textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
+                                child: MaterialButton(
                                   elevation: 0,
                                   hoverElevation: 0,
                                   highlightElevation: 0,
                                   focusElevation: 0,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(stepIcon()[0], size: 40,
-                                      color: currIndex > 0 ? Colors.green : Colors.black54,),
-                                      Text(AppLocalizations.of(context).translate("pervious"), style: TextStyle(fontSize: 18, color: currIndex > 0 ? Colors.green : Colors.black54,),),
-                                    ],
-                                  ),
                                   color: Colors.white,
                                   disabledColor: Colors.white,
-                                  onPressed: currIndex > 0 ? () {
-                                    setState(() => currIndex = _validPosition(--currIndex));
-                                    print(currIndex);
-                                    formSlider.previousPage(
-                                      duration: Duration(milliseconds: 300), curve: Curves.linear);
-                                  } : null,
-                                ),
-                                Directionality(
-                                  textDirection: isRTL ? TextDirection.ltr : TextDirection.rtl,
-                                  child: MaterialButton(
-                                    elevation: 0,
-                                    hoverElevation: 0,
-                                    highlightElevation: 0,
-                                    focusElevation: 0,
-                                    color: Colors.white,
-                                    disabledColor: Colors.white,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Icon(stepIcon()[1], size: 40,
-                                          color: currIndex <= 1 ? Colors.green : Colors.black54,),
-                                        Text(AppLocalizations.of(context).translate("next"), style: TextStyle(fontSize: 18, color: currIndex <= 1 ? Colors.green : Colors.black54,),),
-                                      ],
-                                    ),
-                                      onPressed: currIndex <= 1 ? () {
-                                        setState(() => currIndex = _validPosition(++currIndex));
-                                        print(currIndex);
-                                        formSlider.nextPage(
-                                            duration: Duration(milliseconds: 300), curve: Curves.linear);
-                                      } : null,
-                                  ),
-                                ),
-                              ]),
-                            ],
-                          ),
-                          MaterialButton(
-                            hoverElevation: 0,
-                            highlightElevation: 0,
-                            focusElevation: 0,
-                            onPressed: currIndex == 2 ? () async {
-                              /*if(_formKey.currentState.validate()){
-                                dynamic result = await _auth.loginWithEmailAndPassword(email, password);
-                                if(result == null){
-                                  setState(() => error = "user not found!");
-                                }
-                                else{
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => Home()));
-                                }
-                              }*/
-                            } : null,
-                            child: Text(AppLocalizations.of(context).translate("sign_up").toUpperCase(),
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                              ),
-                            ),
-                            color: Colors.green,
-                            disabledColor: Colors.grey,
-                            elevation: 0,
-                            minWidth: MediaQuery.of(context).size.width,
-                            height: 45,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)
-                            ),
-                          ),
-                          Text(
-                            AppLocalizations.of(context).translate("or_sign_up_using"),
-                            style: TextStyle(color: Colors.grey, fontSize: 20),
-                            textAlign: TextAlign.center,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                MaterialButton(
-                                  hoverElevation: 0,
-                                  highlightElevation: 0,
-                                  focusElevation: 0,
-                                  onPressed: (){},
-                                  child: Icon(EvaIcons.facebookOutline, size: 25,),
-                                  color: Colors.white,
-                                  elevation: 0,
-                                  //minWidth: 350,
-                                  height: 55,
-                                  minWidth: 55,
-                                  textColor: Colors.blue.shade800,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      side: BorderSide(color: Colors.blue.shade800, width: 2.5)
-                                  ),
-                                ),
-                                SizedBox(width: 20,),
-                                MaterialButton(
-                                  hoverElevation: 0,
-                                  highlightElevation: 0,
-                                  focusElevation: 0,
-                                  onPressed: (){},
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
-                                      Icon(EvaIcons.googleOutline, size: 25,),
+                                      Icon(stepIcon()[1], size: 40,
+                                        color: currIndex <= 1 ? Colors.green : Colors.black54,),
+                                      Text(AppLocalizations.of(context).translate("next"), style: TextStyle(fontSize: 18, color: currIndex <= 1 ? Colors.green : Colors.black54,),),
                                     ],
                                   ),
-                                  color: Colors.white,
-                                  elevation: 0,
-                                  //minWidth: 350,
-                                  height: 55,
-                                  minWidth: 55,
-                                  textColor: Colors.red.shade800,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      side: BorderSide(color: Colors.red.shade800, width: 2.5)
-                                  ),
+                                    onPressed: currIndex <= 1 ? () {
+                                      setState(() => currIndex = _validPosition(++currIndex));
+                                      print(currIndex);
+                                      formSlider.nextPage(
+                                          duration: Duration(milliseconds: 300), curve: Curves.linear);
+                                    } : null,
                                 ),
-                              ],
+                              ),
+                            ]),
+                          ],
+                        ),
+                        MaterialButton(
+                          hoverElevation: 0,
+                          highlightElevation: 0,
+                          focusElevation: 0,
+                          onPressed: currIndex == 2 ? () async {
+                            /*if(_formKey.currentState.validate()){
+                              dynamic result = await _auth.loginWithEmailAndPassword(email, password);
+                              if(result == null){
+                                setState(() => error = "user not found!");
+                              }
+                              else{
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => Home()));
+                              }
+                            }*/
+                          } : null,
+                          child: Text(AppLocalizations.of(context).translate("sign_up").toUpperCase(),
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 30),
-                            child: Center(
-                              child: RichText(
-                                text: TextSpan(
-                                    style: TextStyle(fontFamily: "JF"),
-                                    children: [
-                                      TextSpan(
-                                          text: AppLocalizations.of(context).translate("already_have_an_account"),
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 15,
-                                          )
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context).translate("sign_in").toLowerCase(),
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 15,
-                                        ),
-                                        recognizer: TapGestureRecognizer()..onTap = () =>
-                                            Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: SignIn(), duration: Duration(seconds: 0))),
-                                      ),
-                                    ]
+                          color: Colors.green,
+                          disabledColor: Colors.grey,
+                          elevation: 0,
+                          minWidth: MediaQuery.of(context).size.width,
+                          height: 45,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)
+                          ),
+                        ),
+                        Text(
+                          AppLocalizations.of(context).translate("or_sign_up_using"),
+                          style: TextStyle(color: Colors.grey, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              MaterialButton(
+                                hoverElevation: 0,
+                                highlightElevation: 0,
+                                focusElevation: 0,
+                                onPressed: (){},
+                                child: Icon(EvaIcons.facebookOutline, size: 25,),
+                                color: Colors.white,
+                                elevation: 0,
+                                //minWidth: 350,
+                                height: 55,
+                                minWidth: 55,
+                                textColor: Colors.blue.shade800,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    side: BorderSide(color: Colors.blue.shade800, width: 2.5)
                                 ),
+                              ),
+                              SizedBox(width: 20,),
+                              MaterialButton(
+                                hoverElevation: 0,
+                                highlightElevation: 0,
+                                focusElevation: 0,
+                                onPressed: (){},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Icon(EvaIcons.googleOutline, size: 25,),
+                                  ],
+                                ),
+                                color: Colors.white,
+                                elevation: 0,
+                                //minWidth: 350,
+                                height: 55,
+                                minWidth: 55,
+                                textColor: Colors.red.shade800,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    side: BorderSide(color: Colors.red.shade800, width: 2.5)
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 30),
+                          child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                  style: TextStyle(fontFamily: "JF"),
+                                  children: [
+                                    TextSpan(
+                                        text: AppLocalizations.of(context).translate("already_have_an_account"),
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 15,
+                                        )
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context).translate("sign_in").toLowerCase(),
+                                      style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 15,
+                                      ),
+                                      recognizer: TapGestureRecognizer()..onTap = () =>
+                                          Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: SignIn(), duration: Duration(seconds: 0))),
+                                    ),
+                                  ]
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                ],
               ),
-              Expanded(
-                flex: 1,
-                child: Container(),
-              )
-            ],
-          ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(),
+            )
+          ],
         ),
       ),
     );
