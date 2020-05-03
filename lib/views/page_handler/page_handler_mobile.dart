@@ -3,7 +3,6 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 ///  and landscape
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/widgets/app_drawer/app_drawer.dart';
 
 class PageHandlerMobile extends StatelessWidget {
@@ -20,7 +19,7 @@ class PageHandlerMobile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(pageTitle, style: GoogleFonts.cairo(color: Colors.black54, fontSize: 23, fontWeight: FontWeight.bold),),
+        title: Text(pageTitle, style: TextStyle(fontSize: 23, fontFamily: "JF", fontWeight: FontWeight.bold)),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(EvaIcons.menu, size: 30, color: Colors.green,),

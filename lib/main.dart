@@ -1,7 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
 import 'package:hopex_progx/screens/onboarding.dart';
@@ -9,16 +8,22 @@ import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
-bool testSize = true;
+bool testSize = false;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
 }
 
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,9 +36,7 @@ class MyApp extends StatelessWidget {
         },*/
         title: 'Flutter Demo',
         theme: ThemeData(
-          textTheme: GoogleFonts.cairoTextTheme(
-            Theme.of(context).textTheme,
-          ),
+          fontFamily: "JF",
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           backgroundColor: Colors.grey.shade100,

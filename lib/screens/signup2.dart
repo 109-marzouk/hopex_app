@@ -3,7 +3,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignUp2 extends StatefulWidget {
   @override
@@ -102,10 +101,7 @@ class SignUp2State extends State<SignUp2> {
             SizedBox(
               width: double.infinity,
               child: Text(inputTitle,
-                style: GoogleFonts.sourceSansPro(textStyle: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
+                style:TextStyle(fontSize: 30, fontFamily: "JF", fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,),
             ),
             TextFormField(
@@ -231,7 +227,7 @@ class SignUp2State extends State<SignUp2> {
                                     SizedBox(height: 40,),
                                     SizedBox(
                                         width: double.infinity,
-                                        child: Text("Terms & Privacy Policy", style: GoogleFonts.sourceSansPro(textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,)), textAlign: TextAlign.left,),
+                                        child: Text("Terms & Privacy Policy", style: TextStyle(fontSize: 25, fontFamily: "JF", fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
                                     ),
                                     Text(
                                       '''

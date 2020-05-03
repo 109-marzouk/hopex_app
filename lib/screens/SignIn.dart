@@ -2,14 +2,11 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:page_transition/page_transition.dart';
-//import 'package:loginui/Screens/Authenticate/register.dart';
-//import 'package:loginui/Screens/Home/Home.dart';
-//import 'package:loginui/services/auth.dart';
+
 
 
 class SignIn extends StatefulWidget {
@@ -21,8 +18,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  //final AuthService _auth = AuthService();
-  //final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
@@ -236,7 +231,7 @@ class _SignInState extends State<SignIn> {
                             child: Center(
                               child: RichText(
                                 text: TextSpan(
-                                  style: GoogleFonts.cairo(),
+                                  style: TextStyle(fontFamily: "JF"),
                                   children: [
                                     TextSpan(
                                       text: AppLocalizations.of(context).translate("Don't_have_an_account"),

@@ -4,13 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
 import 'package:page_transition/page_transition.dart';
-//import 'package:loginui/Screens/Authenticate/register.dart';
-//import 'package:loginui/Screens/Home/Home.dart';
-//import 'package:loginui/services/auth.dart';
+
 
 
 class SignUp extends StatefulWidget {
@@ -31,8 +28,7 @@ class CustomScrollBehavior extends ScrollBehavior {
 
 
 class _SignUpState extends State<SignUp> {
-  //final AuthService _auth = AuthService();
-  //final _formKey = GlobalKey<FormState>();
+
 
   String email = '';
   String password = '';
@@ -465,7 +461,7 @@ class _SignUpState extends State<SignUp> {
                             child: Center(
                               child: RichText(
                                 text: TextSpan(
-                                    style: GoogleFonts.cairo(),
+                                    style: TextStyle(fontFamily: "JF"),
                                     children: [
                                       TextSpan(
                                           text: AppLocalizations.of(context).translate("already_have_an_account"),
