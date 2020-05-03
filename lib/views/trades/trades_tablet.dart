@@ -7,6 +7,6 @@ class TradesTablet extends StatefulWidget {
 class _TradesTabletState extends State<TradesTablet> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Trades Tablet", style: TextStyle(fontSize: 50),));
+    return Scaffold(resizeToAvoidBottomPadding: false ,body: Text("Trades Tablet", style: TextStyle(fontSize: 50),));
   }
 }

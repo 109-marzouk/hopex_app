@@ -15,7 +15,6 @@ class OrientationLayout extends StatelessWidget {
     if (orientation == Orientation.landscape) {
       return landscape ?? portrait;
     }
-
     return portrait;
   }
 }

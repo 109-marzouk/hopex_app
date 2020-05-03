@@ -27,7 +27,7 @@ class ScreenTypeLayout extends StatelessWidget {
             return tablet;
           }
         }
-        return desktop;
+        return tablet;
       },
     );
   }

@@ -8,7 +8,7 @@ import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-bool testSize = false;
+bool testSize = true;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

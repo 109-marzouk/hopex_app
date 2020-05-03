@@ -22,6 +22,7 @@ class _PageHandlerTabletState extends State<PageHandlerTablet> {
       AppDrawer(),
     ];
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       endDrawer: AppDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(65.0),
@@ -108,7 +109,7 @@ class _PageHandlerTabletState extends State<PageHandlerTablet> {
         centerTitle: false,
         ),
       ),
-      body: Column(children: children.reversed.toList()),
+      body: Wrap(children: children.reversed.toList()),
     );
   }
 }
