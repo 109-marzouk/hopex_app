@@ -7,11 +7,18 @@ import 'package:hopex_progx/screens/onboarding.dart';
 import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-bool testSize = true;
-
-void main() {
+import 'package:shared_preferences/shared_preferences.dart';
+import 'api/users_api.dart';
+bool testSize = false;
+bool isOnBoardingSeen;
+bool isLoggedIn;
+bool isSignUpPressed;
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs =  await SharedPreferences.getInstance();
+  isOnBoardingSeen = prefs.getBool('isOnBoardingSeen') ?? false;
+  isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  isSignUpPressed = prefs.getBool('isSignUpPressed') ?? false;
   runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
 }
 
@@ -23,6 +30,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         //home: HomeView(),
-        initialRoute: '/OnBoarding',
+        initialRoute: isOnBoardingSeen == false ? '/OnBoarding' : (isLoggedIn ? '/Trades' : isSignUpPressed ? '/SignIn' : '/SignUp'),
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           '/OnBoarding': (context) => OnBoarding(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hopex_progx/hand_cursor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerOptionTabletLandscape extends StatelessWidget {
   final String title;
@@ -22,7 +23,14 @@ class DrawerOptionTabletLandscape extends StatelessWidget {
         shape: (currRoute == toPage || currRoute == toPage) ? Border(
             left: BorderSide(color: Colors.green, width: 3)
         ) : null,
-        onPressed: () => Navigator.of(context).pushReplacementNamed(toPage),
+        onPressed: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          if(toPage == "/SignIn"){
+            prefs.setBool('isLoggedIn', false);
+            prefs.setString('token', null);
+          }
+          Navigator.of(context).pushReplacementNamed(toPage);
+        },
         splashColor: Colors.green.shade200,
         highlightColor: Colors.green.shade200,
         elevation: 0,

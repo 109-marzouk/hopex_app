@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoarding extends StatefulWidget {
   @override
@@ -33,10 +34,14 @@ class _OnBoardingState extends State<OnBoarding> {
       //Pass pageList and the mainPage route.
       body: IntroductionScreen(
         pages: listPagesViewModel,
-        onDone: () {
+        onDone: () async {
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setBool('isOnBoardingSeen', true);
           Navigator.pushNamed(context, "/SignUp");
         },
-        onSkip: () {
+        onSkip: () async {
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setBool('isOnBoardingSeen', true);
           Navigator.pushNamed(context, "/SignUp");
         },
         showSkipButton: true,

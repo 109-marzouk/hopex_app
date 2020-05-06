@@ -6,7 +6,7 @@ import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:page_transition/page_transition.dart';
-
+import '../api/auth_api.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -22,6 +22,7 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
+  final _singInFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class _SignInState extends State<SignIn> {
                         Column(
                           children: <Widget>[
                             Form(
-                              //key: _formKey,
+                              key: _singInFormKey,
                               child: Column(
                                 children: <Widget>[
                                   Padding(
@@ -78,7 +79,7 @@ class _SignInState extends State<SignIn> {
                                           ),
                                         ),
                                         focusColor: Colors.purpleAccent,
-                                        enabledBorder: OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                             borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                                           borderSide: BorderSide(
                                             color: Colors.black26,
@@ -89,7 +90,8 @@ class _SignInState extends State<SignIn> {
                                         setState(() => email = val);
                                       },
                                       validator: (val) {
-                                        if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email)) return "Invalid Email";
+                                        if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email))
+                                          return "please enter a valid email";
                                         else return null;
                                       },
                                     ),
@@ -110,7 +112,7 @@ class _SignInState extends State<SignIn> {
                                             color: Colors.green,
                                           ),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                             borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                                           borderSide: BorderSide(
                                             color: Colors.black26
@@ -121,7 +123,8 @@ class _SignInState extends State<SignIn> {
                                       setState(() => password = val);
                                     },
                                     validator: (val) {
-                                      if(!RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(password)) return "Invalid Password";
+                                      if(!RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(password))
+                                        return "it must be at least 8 characters and contains:\none letter A-Z or a-z\none symbol such as #@\$%&(), etc..";
                                       else return null;
                                     },
                                   )
@@ -146,17 +149,12 @@ class _SignInState extends State<SignIn> {
                           highlightElevation: 0,
                           focusElevation: 0,
                           onPressed: () async {
-                            Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
-                            /*if(_formKey.currentState.validate()){
-                              dynamic result = await _auth.loginWithEmailAndPassword(email, password);
-                              if(result == null){
-                                setState(() => error = "user not found!");
+                            if(_singInFormKey.currentState.validate()){
+                              AuthAPI authAPI = AuthAPI();
+                              if(await authAPI.isUserExist(email, password)){
+                                Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
                               }
-                              else{
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => Home()));
-                              }
-                            }*/
+                            }
                           },
                           child: Text(AppLocalizations.of(context).translate("sign_in"),
                           style: TextStyle(

@@ -27,6 +27,7 @@ class DrawerOption extends StatelessWidget {
       tablet: DrawerOptionTabletLandscape(
           iconData: iconData,
           title: title,
+          toPage: toPage,
         ),
     );
   }

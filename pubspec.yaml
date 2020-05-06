@@ -35,6 +35,7 @@ dependencies:
   page_transition: ^1.1.5
   introduction_screen: ^1.0.8
   http: ^0.12.1
+  shared_preferences: ^0.5.7
 
 
 dev_dependencies:

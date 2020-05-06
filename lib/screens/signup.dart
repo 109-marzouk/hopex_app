@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -386,6 +387,8 @@ class _SignUpState extends State<SignUp> {
                                     MaterialPageRoute(builder: (context) => Home()));
                               }
                             }*/
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.setBool('isSignUpPressed', true);
                           } : null,
                           child: Text(AppLocalizations.of(context).translate("sign_up").toUpperCase(),
                             style: TextStyle(
