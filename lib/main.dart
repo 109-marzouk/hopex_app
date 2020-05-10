@@ -7,6 +7,7 @@ import 'package:hopex_progx/screens/onboarding.dart';
 import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api/users_api.dart';
 bool testSize = false;
@@ -19,6 +20,7 @@ void main() async {
   isOnBoardingSeen = prefs.getBool('isOnBoardingSeen') ?? false;
   isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   isSignUpPressed = prefs.getBool('isSignUpPressed') ?? false;
+
   runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
 }
 

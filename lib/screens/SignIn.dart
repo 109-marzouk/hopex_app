@@ -122,11 +122,11 @@ class _SignInState extends State<SignIn> {
                                     onChanged: (val) {
                                       setState(() => password = val);
                                     },
-                                    validator: (val) {
-                                      if(!RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(password))
-                                        return "it must be at least 8 characters and contains:\none letter A-Z or a-z\none symbol such as #@\$%&(), etc..";
-                                      else return null;
-                                    },
+//                                    validator: (val) {
+//                                      if(!RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(password))
+//                                        return "it must be at least 8 characters and contains:\none letter A-Z or a-z\none symbol such as #@\$%&(), etc..";
+//                                      else return null;
+//                                    },
                                   )
                                 ],
                               ),

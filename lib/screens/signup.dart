@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hopex_progx/api/auth_api.dart';
 import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
+import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,6 +38,8 @@ class _SignUpState extends State<SignUp> {
   String firstName = '';
   String lastName = '';
   String error = '';
+
+  final _signUpFormKey = GlobalKey<FormState>();
 
   int _validPosition(int position) {
     if (position < 0) return 0;
@@ -74,7 +78,6 @@ class _SignUpState extends State<SignUp> {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 20, right: 20),
               hintText: AppLocalizations.of(context).translate("first_name"),
-              //filled: true,
               focusedBorder: OutlineInputBorder(
                 borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                 borderSide: BorderSide(
@@ -83,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               focusColor: Colors.green,
-              enabledBorder: OutlineInputBorder(
+              border: OutlineInputBorder(
                   borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                   borderSide: BorderSide(
                     color: Colors.black26,
@@ -117,7 +120,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               focusColor: Colors.green,
-              enabledBorder: OutlineInputBorder(
+              border: OutlineInputBorder(
                   borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                   borderSide: BorderSide(
                     color: Colors.black26,
@@ -317,7 +320,7 @@ class _SignUpState extends State<SignUp> {
                         Column(
                           children: <Widget>[
                             Form(
-                              //key: _formKey,
+                              key: _signUpFormKey,
                               child: ScrollConfiguration(
                                 behavior: CustomScrollBehavior(),
                                 child: formSlider,
@@ -377,18 +380,13 @@ class _SignUpState extends State<SignUp> {
                           highlightElevation: 0,
                           focusElevation: 0,
                           onPressed: currIndex == 2 ? () async {
-                            /*if(_formKey.currentState.validate()){
-                              dynamic result = await _auth.loginWithEmailAndPassword(email, password);
-                              if(result == null){
-                                setState(() => error = "user not found!");
-                              }
-                              else{
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => Home()));
-                              }
-                            }*/
-                            SharedPreferences prefs = await SharedPreferences.getInstance();
-                            prefs.setBool('isSignUpPressed', true);
+                            if(_signUpFormKey.currentState.validate()){
+                             AuthAPI authAPI = AuthAPI();
+                             if(await authAPI.isSignedUp(firstName, lastName, email, password)){
+                               print("sign up done!");
+                               Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
+                             }
+                            }
                           } : null,
                           child: Text(AppLocalizations.of(context).translate("sign_up").toUpperCase(),
                             style: TextStyle(

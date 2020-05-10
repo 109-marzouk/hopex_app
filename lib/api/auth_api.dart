@@ -11,10 +11,12 @@ class AuthAPI {
     body: {'email': email, 'password': password});
     if(response.statusCode == 200){
       try {
-        var token = jsonDecode(response.body)["data"]["token"];
+        var data = jsonDecode(response.body)["data"];
         SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-        sharedPreferences.setString('token', token);
+        sharedPreferences.setString('token', data['token']);
         sharedPreferences.setBool('isLoggedIn', true);
+        sharedPreferences.setInt('userID', data['id']);
+        print(data['token']);
         return true;
       }catch(e){
         return false;
@@ -23,5 +25,26 @@ class AuthAPI {
     return false;
   }
 
-
+  Future<bool> isSignedUp(String firstName, String lastName, String email, String password) async {
+    String url = HOME + SIGN_UP;
+    var response = await http.post(url, headers: {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'},
+        body: {'first_name': firstName, 'last_name': lastName, 'email': email, 'password': password});
+    if(response.statusCode == 200){
+      try {
+        if(response.body.isEmpty == false)
+          {
+            var data = jsonDecode(response.body)["data"];
+            SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+            sharedPreferences.setString('token', data['api_token']);
+            sharedPreferences.setBool('isLoggedIn', true);
+            sharedPreferences.setBool('userID', data['id']);
+            return true;
+          }
+        return false;
+      }catch(e){
+        return false;
+      }
+    }
+    return false;
+  }
 }

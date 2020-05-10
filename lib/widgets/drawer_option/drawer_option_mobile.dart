@@ -33,7 +33,7 @@ class DrawerOptionMobilePortrait extends StatelessWidget {
           if(toPage == "/SignIn"){
             prefs.setBool('isLoggedIn', false);
             prefs.setString('token', null);
-            print(prefs.getString('token'));
+            prefs.setString('userID', null);
           }
           Navigator.of(context).pushReplacementNamed(toPage);
         },

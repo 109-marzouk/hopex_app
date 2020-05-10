@@ -31,8 +31,8 @@ class _TradesMobileState extends State<TradesMobile> {
                   return SingleChildScrollView(
                     child: DataTable(
                       columns: [
-                        DataColumn(label: Text("الكمية")),
-                        DataColumn(label: Text("التاريخ")),
+                        DataColumn(label: Text("Amount")),
+                        DataColumn(label: Text("Data")),
                       ],
                       rows: result,
                     ),
