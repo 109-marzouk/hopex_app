@@ -151,7 +151,7 @@ class _SignInState extends State<SignIn> {
                           onPressed: () async {
                             if(_singInFormKey.currentState.validate()){
                               AuthAPI authAPI = AuthAPI();
-                              if(await authAPI.isUserExist(email, password)){
+                              if(await authAPI.logIn(email, password)){
                                 Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
                               }
                             }

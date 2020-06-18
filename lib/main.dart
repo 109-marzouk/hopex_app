@@ -21,6 +21,7 @@ void main() async {
   isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   isSignUpPressed = prefs.getBool('isSignUpPressed') ?? false;
 
+  print(prefs.getString("token"));
   runApp(testSize ? DevicePreview(builder: (context) => MyApp(),): MyApp());
 }
 
@@ -50,7 +51,6 @@ class _MyAppState extends State<MyApp> {
         },*/
         title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: "JF",
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           backgroundColor: Colors.grey.shade100,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart';
 import 'dart:convert';
@@ -8,8 +9,8 @@ import '../utils/api_utils.dart';
 
 
 class Round{
-  String kg, created_at;
-  Round(this.kg, this.created_at);
+  String kg; double diff;
+  Round(this.kg, this.diff);
 }
 
 
@@ -28,12 +29,16 @@ class RoundsAPI {
 
     var response = await http.get(url, headers: {'Accept': 'application/json', HttpHeaders.authorizationHeader: sharedPreferences.getString('token')});
     List<Round> data_result = List<Round>();
-    if(response.statusCode == 200){
+    if(response.statusCode == 201){
       var users = jsonDecode(response.body)["data"];
       for(var round in users){
+        var dateTimeCreatedAt = DateFormat("yyyy-MM-dd HH:mm:ss").parse(round["created_at"], true);
+        var dateLocal = dateTimeCreatedAt.toLocal();
+        DateTime dateTimeNow = DateTime.now();
+        int differenceInSeconds = dateTimeNow.difference(dateLocal).inSeconds;
         Round round_api = Round(
             round["kg"].toString(),
-            round["created_at"].toString()
+            differenceInSeconds < ROUND_DURATION_IN_SECONDES ? differenceInSeconds / ROUND_DURATION_IN_SECONDES : 1.0
         );
         data_result.add(round_api);
       }

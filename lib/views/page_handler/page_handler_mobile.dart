@@ -42,74 +42,80 @@ class _PageHandlerMobileState extends State<PageHandlerMobile> {
           },
         ),
         actions: <Widget>[
-          RaisedButton.icon(
-            icon: Icon(Icons.add),
-            label: Text("Add Round"),
-            onPressed: () {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0))
-                    ),
-                    title: Center(child: Text('Add New Round')),
-                    content: new Row(
-                      children: <Widget>[
-                        new Expanded(
-                        child: new TextField(
-                          inputFormatters: [
-                            WhitelistingTextInputFormatter(RegExp("[0-9]"))
-                          ],
-                          keyboardType: TextInputType.number,
-                          autofocus: true,
-                          cursorColor: Colors.green,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 20, right: 20),
-                            hintText: "Number of Kilogrames",
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:  BorderRadius.all(Radius.circular(50.0),),
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Colors.green,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: RaisedButton.icon(
+              icon: Icon(Icons.add),
+              label: Text("Add Round"),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50)
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0))
+                      ),
+                      title: Center(child: Text('Add New Round')),
+                      content: new Row(
+                        children: <Widget>[
+                          new Expanded(
+                          child: new TextField(
+                            inputFormatters: [
+                              WhitelistingTextInputFormatter(RegExp("[0-9]"))
+                            ],
+                            keyboardType: TextInputType.number,
+                            autofocus: true,
+                            cursorColor: Colors.green,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(left: 20, right: 20),
+                              hintText: "Number of Kilogrames",
+                              focusedBorder: OutlineInputBorder(
                                 borderRadius:  BorderRadius.all(Radius.circular(50.0),),
                                 borderSide: BorderSide(
-                                    color: Colors.black26
-                                )
+                                  width: 2,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius:  BorderRadius.all(Radius.circular(50.0),),
+                                  borderSide: BorderSide(
+                                      color: Colors.black26
+                                  )
+                              ),
                             ),
-                          ),
-                          onChanged: (value) {
-                            setState(() => kg = int.parse(value));
-                          },
-                        ))
-                      ],
-                    ),
-                    actions: <Widget>[
-                      FlatButton(
-                          child: Text('Cancel'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          }),
-                      FlatButton(
-                          child: Text('Add'),
-                          onPressed: () async {
-                            if(_firstPress){
-                              setState(() => _firstPress = false);
-                              RoundsAPI roundsAPI = new RoundsAPI();
-                              if(await roundsAPI.addRound(kg)){
-                                Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
+                            onChanged: (value) {
+                              setState(() => kg = int.parse(value));
+                            },
+                          ))
+                        ],
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                            child: Text('Cancel'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                        FlatButton(
+                            child: Text('Add'),
+                            onPressed: () async {
+                              if(_firstPress){
+                                setState(() => _firstPress = false);
+                                RoundsAPI roundsAPI = new RoundsAPI();
+                                if(await roundsAPI.addRound(kg)){
+                                  Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
+                                }
                               }
-                            }
-                          })
-                    ],
-                  );
-                },
-              );
-            }
+                            })
+                      ],
+                    );
+                  },
+                );
+              }
+            ),
           )
         ],
       ),
@@ -121,7 +127,6 @@ class _PageHandlerMobileState extends State<PageHandlerMobile> {
         color: Colors.grey.shade100,
         child: Column(
           children: <Widget>[
-            SizedBox(height: 10,),
             widget.pageHandlerMobileContent,
           ],
         ),

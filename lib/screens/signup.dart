@@ -382,9 +382,8 @@ class _SignUpState extends State<SignUp> {
                           onPressed: currIndex == 2 ? () async {
                             if(_signUpFormKey.currentState.validate()){
                              AuthAPI authAPI = AuthAPI();
-                             if(await authAPI.isSignedUp(firstName, lastName, email, password)){
-                               print("sign up done!");
-                               Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: Trades()));
+                             if(await authAPI.signUp(firstName, lastName, email, password)){
+                               Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 0), child: SignIn()));
                              }
                             }
                           } : null,
