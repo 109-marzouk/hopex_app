@@ -6,6 +6,7 @@ import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/signup.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../api/auth_api.dart';
 
 
@@ -23,6 +24,7 @@ class _SignInState extends State<SignIn> {
   String password = '';
   String error = '';
   final _singInFormKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {

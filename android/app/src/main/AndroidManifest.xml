@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="hopex_progx"
+        android:label="HOPEX"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

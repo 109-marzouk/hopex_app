@@ -30,7 +30,7 @@ dependencies:
   eva_icons_flutter: ^2.0.0
   universal_html: ^1.1.20
   animated_splash: ^1.0.0
-  carousel_slider: ^1.3.0
+  carousel_slider: ^2.2.1
   device_preview: ^0.4.3
   page_transition: ^1.1.5
   introduction_screen: ^1.0.8
@@ -41,13 +41,24 @@ dependencies:
   line_awesome_icons: ^1.0.4+2
   bordered_text: ^1.0.0
   cupertino_stepper: ^0.1.0
+  awesome_card: ^1.1.0
+  credit_card_type_detector: ^1.0.2
+  flutter_masked_text: ^0.8.0
+  font_awesome_flutter: ^8.8.1
+  curved_navigation_bar: ^0.3.2
+  circular_profile_avatar: ^1.0.6
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.7.5
   flutter_test:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
 
+flutter_icons:
+  image_path: 'assets/images/icon.png'
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,7 +94,10 @@ flutter:
      - family: JF
        fonts:
          - asset: assets/fonts/JF_Flat_regular.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
+     - family: Credit
+       fonts:
+         - asset: assets/fonts/CREDC___.ttf
+
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,

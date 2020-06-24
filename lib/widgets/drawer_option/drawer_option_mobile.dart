@@ -19,32 +19,30 @@ class DrawerOptionMobilePortrait extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.only(left: 3),
-      height: 50,
-      decoration: (currRoute == toPage || currRoute == "/$title" + "s") ? BoxDecoration(
-          color: (currRoute == toPage || currRoute == "/$title" + "s") ? Colors.grey.shade100 : Colors.transparent,
+      height: 55,
+      decoration: BoxDecoration(
         border: Border(
-            left:  isRTL ? BorderSide() : BorderSide(width: 5.0, color: Colors.green),
-            right: isRTL ? BorderSide(width: 5.0, color: Colors.green) : BorderSide(),
-        )
-      ) : null,
+          bottom: BorderSide(width: 0.4, color: Colors.grey.shade300)
+        ),
+      ),
       child: MaterialButton(
         onPressed: () async {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
+          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
           if(toPage == "/SignIn"){
-            prefs.setBool('isLoggedIn', false);
-            prefs.setString('token', null);
-            prefs.setString('userID', null);
+            sharedPreferences.setBool('isLoggedIn', false);
+            sharedPreferences.remove('userID');
+            sharedPreferences.remove('token');
           }
           Navigator.of(context).pushReplacementNamed(toPage);
         },
-        splashColor: Colors.green.shade200,
-        highlightColor: Colors.green.shade200,
+        splashColor: Colors.green.shade50,
+        highlightColor: Colors.green.shade50,
         child: Row(
           children: <Widget>[
             Icon(
               iconData,
               size: 30,
-              color: (currRoute == toPage || currRoute == "/$title" + "s") ? Colors.green : Colors.black,
+              color: Colors.green,
             ),
             SizedBox(
               width: 20,

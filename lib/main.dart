@@ -5,11 +5,14 @@ import 'package:hopex_progx/app_localizations.dart';
 import 'package:hopex_progx/screens/SignIn.dart';
 import 'package:hopex_progx/screens/onboarding.dart';
 import 'package:hopex_progx/screens/signup.dart';
+import 'package:hopex_progx/views/finances/finances_handler.dart';
+import 'package:hopex_progx/views/profile/profile_handler.dart';
 import 'package:hopex_progx/views/trades/trades_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api/users_api.dart';
+
 bool testSize = false;
 bool isOnBoardingSeen;
 bool isLoggedIn;
@@ -49,12 +52,12 @@ class _MyAppState extends State<MyApp> {
             child: child,
           );
         },*/
-        title: 'Flutter Demo',
+        title: 'Hopex',
         theme: ThemeData(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           backgroundColor: Colors.grey.shade100,
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         //home: HomeView(),
         initialRoute: isOnBoardingSeen == false ? '/OnBoarding' : (isLoggedIn ? '/Trades' : isSignUpPressed ? '/SignIn' : '/SignUp'),
@@ -65,8 +68,9 @@ class _MyAppState extends State<MyApp> {
           '/SignIn': (context) => SignIn(),
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/Trades': (context) => Trades(),
-          /*'/Finances': (context) => FinancesView(),
-          '/Profile': (context) => ProfileView(),
+          '/Finances': (context) => Finances(),
+          '/Profile': (context) => Profile(),
+          /*'/Profile': (context) => ProfileView(),
           '/Analytics': (context) => AnalyticsView(),
           '/Help': (context) => HelpView(),
           '/Settings': (context) => SettingsView(),*/

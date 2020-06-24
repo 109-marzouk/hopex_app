@@ -32,7 +32,7 @@ class CustomScrollBehavior extends ScrollBehavior {
 
 class _SignUpState extends State<SignUp> {
 
-
+  final CarouselController _controller = CarouselController();
   String email = '';
   String password = '';
   String firstName = '';
@@ -277,13 +277,16 @@ class _SignUpState extends State<SignUp> {
       )
     ];
     CarouselSlider formSlider = CarouselSlider.builder(
-      scrollDirection: Axis.vertical,
-      enableInfiniteScroll: false,
-      initialPage: 0,
-      enlargeCenterPage: false,
-      viewportFraction: 1.0,
-      aspectRatio: 2.0,
-      scrollPhysics: NeverScrollableScrollPhysics(),
+      carouselController: _controller,
+      options: CarouselOptions(
+        scrollDirection: Axis.vertical,
+        enableInfiniteScroll: false,
+        initialPage: 0,
+        enlargeCenterPage: false,
+        viewportFraction: 1.0,
+        aspectRatio: 2.0,
+        scrollPhysics: NeverScrollableScrollPhysics(),
+      ),
       itemCount: formInputs.length,
       itemBuilder: (BuildContext context, int itemIndex) =>
           Container(
@@ -344,7 +347,7 @@ class _SignUpState extends State<SignUp> {
                                 onPressed: currIndex > 0 ? () {
                                   setState(() => currIndex = _validPosition(--currIndex));
                                   print(currIndex);
-                                  formSlider.previousPage(
+                                  _controller.previousPage(
                                     duration: Duration(milliseconds: 300), curve: Curves.linear);
                                 } : null,
                               ),
@@ -367,7 +370,7 @@ class _SignUpState extends State<SignUp> {
                                     onPressed: currIndex <= 1 ? () {
                                       setState(() => currIndex = _validPosition(++currIndex));
                                       print(currIndex);
-                                      formSlider.nextPage(
+                                      _controller.nextPage(
                                           duration: Duration(milliseconds: 300), curve: Curves.linear);
                                     } : null,
                                 ),

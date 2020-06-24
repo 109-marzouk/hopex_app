@@ -9,8 +9,9 @@ import '../utils/api_utils.dart';
 
 
 class Round{
-  String kg; double diff;
-  Round(this.kg, this.diff);
+  String kg;
+  var from, to; int isDone;
+  Round(this.kg, this.from, this.to, this.isDone);
 }
 
 
@@ -29,19 +30,22 @@ class RoundsAPI {
 
     var response = await http.get(url, headers: {'Accept': 'application/json', HttpHeaders.authorizationHeader: sharedPreferences.getString('token')});
     List<Round> data_result = List<Round>();
-    if(response.statusCode == 201){
-      var users = jsonDecode(response.body)["data"];
-      for(var round in users){
-        var dateTimeCreatedAt = DateFormat("yyyy-MM-dd HH:mm:ss").parse(round["created_at"], true);
-        var dateLocal = dateTimeCreatedAt.toLocal();
-        DateTime dateTimeNow = DateTime.now();
-        int differenceInSeconds = dateTimeNow.difference(dateLocal).inSeconds;
+    if(response.statusCode == 200){
+      var rounds = jsonDecode(response.body)["data"];
+      for(var round in rounds){
+        var from = DateFormat("yyyy-MM-dd").parse(round["created_at"], true);
+        var to = from.add(Duration(days: 35));
+        print(from);
         Round round_api = Round(
             round["kg"].toString(),
-            differenceInSeconds < ROUND_DURATION_IN_SECONDES ? differenceInSeconds / ROUND_DURATION_IN_SECONDES : 1.0
+            from.toString(),
+            to.toString(),
+            int.parse(round['is_done'])
         );
         data_result.add(round_api);
       }
+    }else{
+      print(response.statusCode);
     }
     return data_result;
   }
